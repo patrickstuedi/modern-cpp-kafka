@@ -12,6 +12,9 @@ option(CPPKAFKA_ENABLE_TESTS "Generate the test targets" ${cppkafka_master_proje
 include(CheckCXXCompilerFlag)
 include(CMakePushCheckState)
 
+SET(ENV{LD_LIBRARY_PATH} "/home/pstuedi/local/lib")
+link_directories( $ENV{LD_LIBRARY_PATH} )
+include_directories ("/home/pstuedi/local/include")
 
 #---------------------------
 # C++17 (by default)
@@ -84,7 +87,7 @@ endif ()
 # Build Options
 #---------------------------
 if ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"))
-    add_compile_options("-Wall" "-Werror" "-Wextra" "-Wshadow" "-Wno-unused-result")
+    add_compile_options("-Wall" "-Wextra" "-Wshadow" "-Wno-unused-result")
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif ()
